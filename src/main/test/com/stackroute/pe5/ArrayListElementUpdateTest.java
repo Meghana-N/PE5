@@ -10,59 +10,63 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 public class ArrayListElementUpdateTest {
-    ArrayListElementUpdate obj;
+    ArrayListElementUpdate elementUpdate;
     @Before
     public void setUp()  {
-        obj = new ArrayListElementUpdate();
+        elementUpdate = new ArrayListElementUpdate();
     }
 
     @After
     public void tearDown() throws Exception {
-        obj = null;
+        elementUpdate = null;
     }
 
     @Test
-    public void testupdateElementSuccess() {
-        ArrayList<String> inp = new ArrayList<>();
-        inp.add("apple");
-        inp.add("mango");
-        inp.add("potato");
-        inp.add("cucumber");
-        ArrayList<String> searchStr = new ArrayList<>();
-        searchStr.add("cucumber");
-        searchStr.add("apple");
-        ArrayList<String> replaceStr = new ArrayList<>();
-        replaceStr.add("abc");
-        replaceStr.add("xyz");
-        ArrayList<String> actualStr = obj.updateElement(inp,searchStr,replaceStr);
+    public void testUpdateElementSuccess() {
+        ArrayList<String> inputList = new ArrayList<>();
+        inputList.add("apple");
+        inputList.add("mango");
+        inputList.add("potato");
+        inputList.add("cucumber");
+        ArrayList<String> searchString = new ArrayList<>();
+        searchString.add("cucumber");
+        searchString.add("apple");
+        ArrayList<String> replaceString = new ArrayList<>();
+        replaceString.add("abc");
+        replaceString.add("xyz");
+        ArrayList<String> actualString = elementUpdate.updateElement(inputList,searchString,replaceString);
         ArrayList<String> output = new ArrayList<>();
         output.add("xyz");
         output.add("mango");
         output.add("potato");
         output.add("abc");
-        ArrayList<String> expectedStr = output;
-        assertEquals(expectedStr,actualStr);
+        ArrayList<String> expectedString = output;
+        assertEquals(expectedString,actualString);
     }
 
     @Test
-    public void testupdateElementFailure() {
-        ArrayList<String> inp = new ArrayList<>();
-        inp.add("apple");
-        inp.add("mango");
-        inp.add("potato");
-        inp.add("cucumber");
-        ArrayList<String> searchStr = new ArrayList<>();
-        searchStr.add("cucumber");
-        searchStr.add("apple");
-        ArrayList<String> replaceStr = new ArrayList<>();
-        replaceStr.add("abc");
-        replaceStr.add("xyz");
-        ArrayList<String> actualStr = obj.updateElement(inp,searchStr,replaceStr);
+    public void testUpdateElementFailure() {
+        ArrayList<String> inputList = new ArrayList<>();
+        inputList.add("apple");
+        inputList.add("mango");
+        inputList.add("potato");
+        inputList.add("cucumber");
+        ArrayList<String> searchString = new ArrayList<>();
+        searchString.add("cucumber");
+        searchString.add("apple");
+        ArrayList<String> replaceString = new ArrayList<>();
+        replaceString.add("abc");
+        replaceString.add("xyz");
+        ArrayList<String> actualString = elementUpdate.updateElement(inputList,searchString,replaceString);
         ArrayList<String> output = new ArrayList<>();
         output.add("xyz");
         output.add("mango");
-        ArrayList<String> expectedStr = output;
-        assertNotEquals(expectedStr,actualStr);
+        ArrayList<String> expectedString = output;
+        assertNotEquals(expectedString,actualString);
     }
 
+    @Test(expected = NullPointerException.class)
+    public void testInvalidCase() {
+        assertNull(elementUpdate.updateElement(null,null,null));
+    }
 }

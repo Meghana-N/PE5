@@ -11,37 +11,42 @@ import java.util.Map;
 import static org.junit.Assert.*;
 
 public class WordOccurenceCheckTest {
-    WordOccurenceCheck obj;
+    WordOccurenceCheck wordOccurence;
     @Before
     public void setUp()  {
-        obj = new WordOccurenceCheck();
+        wordOccurence = new WordOccurenceCheck();
     }
 
     @After
     public void tearDown() throws Exception {
-        obj = null;
+        wordOccurence = null;
     }
 
     @Test
     public void testwordOccurenceSuccess() {
         String inputStr = "b w z w";
-        Map<String, Boolean> expectedStr = new HashMap<String, Boolean>();
-        expectedStr.put("z", false );
-        expectedStr.put("b", false );
-        expectedStr.put("w", true );
-        Map<String, Boolean> actualStr = obj.wordOccurence(inputStr);
-        assertEquals(expectedStr,actualStr);
+        Map<String, Boolean> expectedString = new HashMap<String, Boolean>();
+        expectedString.put("z", false );
+        expectedString.put("b", false );
+        expectedString.put("w", true );
+        Map<String, Boolean> actualString = wordOccurence.wordOccurenceCheck(inputStr);
+        assertEquals(expectedString,actualString);
     }
 
     @Test
     public void testwordOccurenceFailure() {
         String inputStr = "b w z w b";
-        Map<String, Boolean> expectedStr = new HashMap<String, Boolean>();
-        expectedStr.put("z", false );
-        expectedStr.put("b", false );
-        expectedStr.put("w", true );
-        Map<String, Boolean> actualStr = obj.wordOccurence(inputStr);
-        assertNotEquals(expectedStr,actualStr);
+        Map<String, Boolean> expectedString = new HashMap<String, Boolean>();
+        expectedString.put("z", false );
+        expectedString.put("b", false );
+        expectedString.put("w", true );
+        Map<String, Boolean> actualString = wordOccurence.wordOccurenceCheck(inputStr);
+        assertNotEquals(expectedString,actualString);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testInvalidCase() {
+        assertNull(wordOccurence.wordOccurenceCheck(null));
     }
 
 }

@@ -1,3 +1,8 @@
+/*Exercise-2 Write a program to find the number of counts in the following String . Store the output in
+Map< String ,Integer> as key value pair.
+Input : String str = “one one -one___two,,three,one @three*one?two”;
+Output : {"one":5 , "two":2, "three" :2}*/
+
 package main.java.com.stackroute.pe5;
 
 import java.util.HashMap;
@@ -6,16 +11,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WordCountMap {
-    public Map<String,Integer> numberOfCounts(String str){
+    //Method to find the word frequency in a string
+    public Map<String,Integer> numberOfCounts(String inputString){
         Map<String,Integer> map = new HashMap<>();
-        String[] nums = {"one","two","three"};
-        for(int i=0;i<nums.length;i++) {
-            Matcher matcher = Pattern.compile(nums[i]).matcher(str);
+        String[] searchString = {"one","two","three"};
+        for(int i=0;i<searchString.length;i++) {
+            Matcher matcher = Pattern.compile(searchString[i]).matcher(inputString);
             int counter = 0;
             while (matcher.find()) {
-                counter++;
+                counter++; //word count
             }
-            map.put(nums[i],counter);
+            map.put(searchString[i],counter); //to add count to the map
         }
         return map;
     }

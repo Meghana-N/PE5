@@ -10,36 +10,41 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 public class WordSortSetTest {
-    WordSortSet obj;
+    WordSortSet wordSort;
     @Before
     public void setUp()  {
-        obj = new WordSortSet();
+        wordSort = new WordSortSet();
     }
 
     @After
     public void tearDown() throws Exception {
-        obj = null;
+        wordSort = null;
     }
 
     @Test
     public void testSortWordsSuccess() {
-        ArrayList<String> expectedStr = new ArrayList<>();
-        expectedStr.add("Delhi");
-        expectedStr.add("Goa");
-        expectedStr.add("Karnataka");
-        expectedStr.add("Rajasthan");
-        ArrayList<String> actualStr = obj.sortWords("Karnataka Goa Rajasthan Delhi");
-        assertEquals(expectedStr,actualStr);
+        ArrayList<String> expectedString= new ArrayList<>();
+        expectedString.add("Delhi");
+        expectedString.add("Goa");
+        expectedString.add("Karnataka");
+        expectedString.add("Rajasthan");
+        ArrayList<String> actualString = wordSort.sortWords("Karnataka Goa Rajasthan Delhi");
+        assertEquals(expectedString,actualString);
     }
 
     @Test
     public void testSortWordsFailure() {
-        ArrayList<String> expectedStr = new ArrayList<>();
-        expectedStr.add("Delhi");
-        expectedStr.add("Karnataka");
-        expectedStr.add("Goa");
-        expectedStr.add("Rajasthan");
-        ArrayList<String> actualStr = obj.sortWords("Karnataka Goa Rajasthan Delhi");
-        assertNotEquals(expectedStr,actualStr);
+        ArrayList<String> expectedString = new ArrayList<>();
+        expectedString.add("Delhi");
+        expectedString.add("Karnataka");
+        expectedString.add("Goa");
+        expectedString.add("Rajasthan");
+        ArrayList<String> actualString = wordSort.sortWords("Karnataka Goa Rajasthan Delhi");
+        assertNotEquals(expectedString,actualString);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testInvalidCase() {
+        assertNull(wordSort.sortWords(null));
     }
 }

@@ -11,38 +11,43 @@ import java.util.Map;
 import static org.junit.Assert.*;
 
 public class ModifyMapValuesTest {
-    ModifyMapValues obj;
+    ModifyMapValues modifyValues;
     @Before
     public void setUp()  {
-        obj = new ModifyMapValues();
+        modifyValues = new ModifyMapValues();
     }
 
     @After
     public void tearDown() throws Exception {
-        obj = null;
+        modifyValues = null;
     }
 
     @Test
-    public void testModifyMapValesSuccess() {
-        LinkedHashMap<String,String> inpMap=new LinkedHashMap<String,String>();
-        inpMap.put("val1","abc");
-        inpMap.put("val2","xyz");
-        Map<String, String> actualStr = obj.modifyValues(inpMap);
-        LinkedHashMap<String,String> expectedStr=new LinkedHashMap<String,String>();
-        expectedStr.put("val1"," ");
-        expectedStr.put("val2","abc");
-        assertEquals(expectedStr,actualStr);
+    public void testModifyMapValueSuccess() {
+        LinkedHashMap<String,String> inputMap=new LinkedHashMap<String,String>();
+        inputMap.put("val1","abc");
+        inputMap.put("val2","xyz");
+        Map<String, String> actualString = modifyValues.modifyValues(inputMap);
+        LinkedHashMap<String,String> expectedString=new LinkedHashMap<String,String>();
+        expectedString.put("val1"," ");
+        expectedString.put("val2","abc");
+        assertEquals(expectedString,actualString);
     }
 
     @Test
-    public void testModifyMapValesFailure() {
-        LinkedHashMap<String,String> inpMap=new LinkedHashMap<String,String>();
-        inpMap.put("val1","abc");
-        inpMap.put("val2","xyz");
-        Map<String, String> actualStr = obj.modifyValues(inpMap);
-        LinkedHashMap<String,String> expectedStr=new LinkedHashMap<String,String>();
-        expectedStr.put("val1","hijk ");
-        expectedStr.put("val2","abc");
-        assertNotEquals(expectedStr,actualStr);
+    public void testModifyMapValueFailure() {
+        LinkedHashMap<String,String> inputMap=new LinkedHashMap<String,String>();
+        inputMap.put("val1","abc");
+        inputMap.put("val2","xyz");
+        Map<String, String> actualString = modifyValues.modifyValues(inputMap);
+        LinkedHashMap<String,String> expectedString=new LinkedHashMap<String,String>();
+        expectedString.put("val1","hijk ");
+        expectedString.put("val2","abc");
+        assertNotEquals(expectedString,actualString);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testInvalidCase() {
+        assertNull(modifyValues.modifyValues(null));
     }
 }
